@@ -1,5 +1,4 @@
-
-//exercicio 1
+// Exercício 1: Definindo as classes
 class Cliente {
   constructor(cpf, nome, datanascimento) {
     this.cpf = cpf;
@@ -25,120 +24,71 @@ class Venda {
   }
 }
 
-// Exercício 2
-const clientes = [
-  new Cliente('11111111111', 'Cliente 1', '1990-01-01'),
-  new Cliente('22222222222', 'Cliente 2', '1995-05-10'),
-  new Cliente('33333333333', 'Cliente 3', '1988-12-15')
-];
+// Exercício 2: Instanciando objetos
+const cliente1 = new Cliente('111.111.111-11', 'João', '01/01/1990');
+const cliente2 = new Cliente('222.222.222-22', 'Maria', '05/02/1985');
+const cliente3 = new Cliente('333.333.333-33', 'Pedro', '10/10/2000');
 
-const produtos = [
-  new Produto('001', 'Produto 1', 10),
-  new Produto('002', 'Produto 2', 5),
-  new Produto('003', 'Produto 3', 20),
-  new Produto('004', 'Produto 4', 8),
-  new Produto('005', 'Produto 5', 15),
-  new Produto('006', 'Produto 6', 3),
-  new Produto('007', 'Produto 7', 12),
-  new Produto('008', 'Produto 8', 7)
-];
+const produto1 = new Produto('001', 'Camiseta', 10);
+const produto2 = new Produto('002', 'Calça', 5);
+const produto3 = new Produto('003', 'Boné', 20);
+const produto4 = new Produto('004', 'Tênis', 15);
+const produto5 = new Produto('005', 'Jaqueta', 8);
+const produto6 = new Produto('006', 'Shorts', 12);
+const produto7 = new Produto('007', 'Chinelo', 25);
+const produto8 = new Produto('008', 'Bolsa', 7);
 
-const vendas = [
-  new Venda('001', '2023-06-01 10:00:00', clientes[0], produtos[0]),
-  new Venda('002', '2023-06-02 14:30:00', clientes[1], produtos[3]),
-  new Venda('003', '2023-06-03 16:45:00', clientes[2], produtos[5]),
-  new Venda('004', '2023-06-04 09:15:00', clientes[0], produtos[1]),
-  new Venda('005', '2023-06-05 11:30:00', clientes[1], produtos[7])
-];
+const venda1 = new Venda(1, '23/06/2023 14:30', cliente1, produto1);
+const venda2 = new Venda(2, '24/06/2023 10:15', cliente2, produto2);
+const venda3 = new Venda(3, '25/06/2023 18:45', cliente3, produto3);
+const venda4 = new Venda(4, '26/06/2023 09:00', cliente1, produto4);
+const venda5 = new Venda(5, '27/06/2023 16:20', cliente2, produto5);
 
-// Exercício 3
-// Array de clientes
-const cliente = [
-  { cpf: '11111111111', nome: 'João' },
-  { cpf: '22222222222', nome: 'Maria' },
-  { cpf: '33333333333', nome: 'Pedro' }
-];
+// Exercício 3: Arrays e exibição dos atributos
+const clientesArray = [cliente1, cliente2, cliente3];
+const produtosArray = [produto1, produto2, produto3, produto4, produto5, produto6, produto7, produto8];
+const vendasArray = [venda1, venda2, venda3, venda4, venda5];
 
-// Array de produtos
-const produto = [
-  { codigo: 'P1', descricao: 'Camiseta', qtdestoque: 10 },
-  { codigo: 'P2', descricao: 'Calça', qtdestoque: 5 },
-  { codigo: 'P3', descricao: 'Boné', qtdestoque: 20 }
-];
+console.log('Atributos dos clientes:');
+clientesArray.forEach(cliente => {
+  console.log(cliente.nome);
+});
 
-// Array de vendas
-const venda = [
-  { codigo: 'V1', datahora: '2023-06-01 10:30', cliente: '11111111111', produto: 'P1' },
-  { codigo: 'V2', datahora: '2023-06-02 15:45', cliente: '22222222222', produto: 'P2' },
-  { codigo: 'V3', datahora: '2023-06-03 09:15', cliente: '33333333333', produto: 'P3' }
-];
+console.log('\nAtributos dos produtos:');
+produtosArray.forEach(produto => {
+  console.log(produto.descricao);
+});
 
-// Exibindo os atributos de cada classe
-console.log('\n\nAtributos dos clientes:');
-for (let i = 0; i < clientes.length; i++) {
-  const cliente = clientes[i];
-  console.log('Nome:', cliente.nome);
-}
+console.log('\nAtributos das vendas:');
+vendasArray.forEach(venda => {
+  console.log(venda.datahora);
+});
 
-console.log('\n\nAtributos dos produtos:');
-for (let i = 0; i < produtos.length; i++) {
-  const produto = produtos[i];
-  console.log('Descrição:', produto.descricao);
-}
+// Exercício 4: Transformando arrays em objetos da classe Map com valores em formato de array
+const mapaClientes = new Map(clientesArray.map(cliente => [cliente.cpf, [cliente.nome, cliente.datanascimento]]));
+const mapaProdutos = new Map(produtosArray.map(produto => [produto.codigo, [produto.descricao, produto.qtdestoque]]));
+const mapaVendas = new Map(vendasArray.map(venda => [venda.codigo, [venda.datahora, venda.cliente, venda.produto]]));
 
-console.log('\n\nAtributos das vendas:');
-for (let i = 0; i < vendas.length; i++) {
-  const venda = vendas[i];
-  console.log('Data/Hora:', venda.datahora);
-}
+console.log('\nMapa de clientes:');
+console.log(mapaClientes);
 
+console.log('\nMapa de produtos:');
+console.log(mapaProdutos);
 
-// Exercício 4
+console.log('\nMapa de vendas:');
+console.log(mapaVendas);
 
-const clienteMap = new Map();
-for (let i = 0; i < clientes.length; i++) {
-  const cliente = clientes[i];
-  clienteMap.set(cliente.cpf, { nome: cliente.nome, datanascimento: cliente.datanascimento });
-}
+// Exercício 5: Transformando arrays em objetos da classe Map com valores em formato de objeto
+const mapaClientesObjetos = new Map(clientesArray.map(cliente => [cliente.cpf, { nome: cliente.nome, datanascimento: cliente.datanascimento }]));
+const mapaProdutosObjetos = new Map(produtosArray.map(produto => [produto.codigo, { descricao: produto.descricao, qtdestoque: produto.qtdestoque }]));
+const mapaVendasObjetos = new Map(vendasArray.map(venda => [venda.codigo, { datahora: venda.datahora, cliente: venda.cliente, produto: venda.produto }]));
 
-const produtoMap = new Map();
-for (let i = 0; i < produtos.length; i++) {
-  const produto = produtos[i];
-  produtoMap.set(produto.codigo, { descricao: produto.descricao, qtdestoque: produto.qtdestoque });
-}
+console.log('\nMapa de clientes (objetos):');
+console.log(mapaClientesObjetos);
 
-const vendaMap = new Map();
-for (let i = 0; i < vendas.length; i++) {
-  const venda = vendas[i];
-  vendaMap.set(venda.codigo, { datahora: venda.datahora, cliente: venda.cliente, produto: venda.produto });
-}
+console.log('\nMapa de produtos (objetos):');
+console.log(mapaProdutosObjetos);
 
-console.log('\n\nMapa de clientes (objetos):', clienteMap);
-console.log('\n\nMapa de produtos (objetos):', produtoMap);
-console.log('\n\nMapa de vendas (objetos):', vendaMap);
+console.log('\nMapa de vendas (objetos):');
+console.log(mapaVendasObjetos);
 
-
-
-// Exercício 5
-// Transformando os arrays em objetos Map
-const clienteMap1 = new Map();
-for (let i = 0; i < clientes.length; i++) {
-  const cliente = clientes[i];
-  clienteMap.set(cliente.cpf, { nome: cliente.nome, datanascimento: cliente.datanascimento });
-}
-
-const produtoMap1 = new Map();
-for (let i = 0; i < produtos.length; i++) {
-  const produto = produtos[i];
-  produtoMap.set(produto.codigo, { descricao: produto.descricao, qtdestoque: produto.qtdestoque });
-}
-
-const vendaMap1 = new Map();
-for (let i = 0; i < vendas.length; i++) {
-  const venda = vendas[i];
-  vendaMap.set(venda.codigo, { datahora: venda.datahora, cliente: venda.cliente, produto: venda.produto });
-}
-
-console.log('\nMapa de clientes (objetos):', clienteMap);
-console.log('\nMapa de produtos (objetos):', produtoMap);
-console.log('\nMapa de vendas (objetos):', vendaMap);
